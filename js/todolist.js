@@ -49,12 +49,13 @@ var App = (function(){
     function _renderTodo() {
         console.log(snapshot.val());
         let list = $('#todolist');
-//         todos.on('value', function(snapshot){
-//             list.html('');
-//             $('.loading').css('display', 'block');
-//             $('.container-fluid').css('display', 'none');
-//             let data = snapshot.val();
-//             for(let key in data) {
+        todos.on('value', function(snapshot){
+            list.html('');
+            $('.loading').css('display', 'block');
+            $('.container-fluid').css('display', 'none');
+            let data = snapshot.val();
+            for(let key in data) {
+                console.log(data[key]);
 //                 list.append(`
 //                 <div class="card m-2">
 //                     <div class="card-block p-2" data-key="${key}">
@@ -66,10 +67,10 @@ var App = (function(){
 //                     </div>
 //                 </div>
 //                 `);
-//             }
-//             $('.loading').css('display', 'none');
-//             $('.container-fluid').css('display', 'block');
-//         });
+            }
+            $('.loading').css('display', 'none');
+            $('.container-fluid').css('display', 'block');
+        });
         console.log("Render sucessful!");
     }
 
