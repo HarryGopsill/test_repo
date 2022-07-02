@@ -14,7 +14,7 @@ var App = (function(){
     messagingSenderId: "313476801849",
     appId: "1:313476801849:web:dec2a5f71d273e05d634e8",
     measurementId: "G-B3XMV4KECF",
-        databaseURL: "homepage-c3b5e.appspot.com"
+        databaseURL: "gs://homepage-c3b5e.appspot.com"
     };
 
     /* 綁定事件 */
