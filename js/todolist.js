@@ -55,7 +55,7 @@ var App = (function(){
             $('.container-fluid').css('display', 'none');
             let data = snapshot.val();
             for(let key in data) {
-                console.log(data[key]);
+                console.log(data[key].title);
 //                 list.append(`
 //                 <div class="card m-2">
 //                     <div class="card-block p-2" data-key="${key}">
