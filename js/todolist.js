@@ -6,13 +6,14 @@ var App = (function(){
 
     // Initialize Firebase
     var config = {
-       apiKey: "AIzaSyANueGIlPh0aSVOS7cKseMKC39xhAsl3JM",
-        authDomain: "homepage-c3b5e.firebaseapp.com",
-        projectId: "homepage-c3b5e",
-        storageBucket: "homepage-c3b5e.appspot.com",
-        messagingSenderId: "313476801849",
-        appId: "1:313476801849:web:dec2a5f71d273e05d634e8",
-        measurementId: "G-B3XMV4KECF"
+      apiKey: "AIzaSyANueGIlPh0aSVOS7cKseMKC39xhAsl3JM",
+  authDomain: "homepage-c3b5e.firebaseapp.com",
+  projectId: "homepage-c3b5e",
+  storageBucket: "homepage-c3b5e.appspot.com",
+  messagingSenderId: "313476801849",
+  appId: "1:313476801849:web:dec2a5f71d273e05d634e8",
+  measurementId: "G-B3XMV4KECF"
+        
     };
 
     /* 綁定事件 */
