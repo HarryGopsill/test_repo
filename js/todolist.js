@@ -47,29 +47,29 @@ var App = (function(){
 
     /* TODOs 渲染 */
     function _renderTodo() {
-        console.log("Rendering...");
+        console.log(snapshot.val());
         let list = $('#todolist');
-        todos.on('value', function(snapshot){
-            list.html('');
-            $('.loading').css('display', 'block');
-            $('.container-fluid').css('display', 'none');
-            let data = snapshot.val();
-            for(let key in data) {
-                list.append(`
-                <div class="card m-2">
-                    <div class="card-block p-2" data-key="${key}">
-                        <div class="d-flex mb-2 justify-content-between">
-                            <span class="h4 mb-0 card-title">${data[key].title} <small class="h6 text-muted">${data[key].time}</small></span>
-                            <i class="delete-icon mt-1 mr-1 justify-content-end fas fa-times"></i>
-                        </div>
-                        <p class="card-text">${data[key].content}</p>
-                    </div>
-                </div>
-                `);
-            }
-            $('.loading').css('display', 'none');
-            $('.container-fluid').css('display', 'block');
-        });
+//         todos.on('value', function(snapshot){
+//             list.html('');
+//             $('.loading').css('display', 'block');
+//             $('.container-fluid').css('display', 'none');
+//             let data = snapshot.val();
+//             for(let key in data) {
+//                 list.append(`
+//                 <div class="card m-2">
+//                     <div class="card-block p-2" data-key="${key}">
+//                         <div class="d-flex mb-2 justify-content-between">
+//                             <span class="h4 mb-0 card-title">${data[key].title} <small class="h6 text-muted">${data[key].time}</small></span>
+//                             <i class="delete-icon mt-1 mr-1 justify-content-end fas fa-times"></i>
+//                         </div>
+//                         <p class="card-text">${data[key].content}</p>
+//                     </div>
+//                 </div>
+//                 `);
+//             }
+//             $('.loading').css('display', 'none');
+//             $('.container-fluid').css('display', 'block');
+//         });
         console.log("Render sucessful!");
     }
 
