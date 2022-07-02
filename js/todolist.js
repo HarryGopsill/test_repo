@@ -47,7 +47,7 @@ var App = (function(){
 
     /* TODOs 渲染 */
     function _renderTodo() {
-        console.log(snapshot.val());
+//         console.log(snapshot.val());
         let list = $('#todolist');
         todos.on('value', function(snapshot){
             list.html('');
