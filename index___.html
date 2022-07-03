@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+</head>
+
+<body>
+
+    <form>
+        a: <input type="number" name="a" id="a"><br>
+        b: <input type="number" name="b" id="b"><br>
+        c: <input type="number" name="c" id="c"><br>
+        <button onclick="writeUserData()">Add</button>
+      </form>
+
+
+ 
+      
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-analytics.js";
+        import {  getDatabase, ref, set, get , child} from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.8.4/firebase-database.min.js";
+
+        import { getFirestore, collection, getDocs } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.8.4/firebase-firestore-lite.min.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyANueGIlPh0aSVOS7cKseMKC39xhAsl3JM",
+          authDomain: "homepage-c3b5e.firebaseapp.com",
+          databaseURL: "https://homepage-c3b5e-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "homepage-c3b5e",
+          storageBucket: "homepage-c3b5e.appspot.com",
+          messagingSenderId: "313476801849",
+          appId: "1:313476801849:web:dec2a5f71d273e05d634e8",
+          measurementId: "G-B3XMV4KECF"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        const db = getFirestore(app);
+        const database = getDatabase();
+
+        // writeUserData('1','harry,' ,'email','url');
+        // writeUserData('2','jame,' ,'email','url');
+
+       
+        
+        function writeUserData() {
+            console.log('@@@@@@@@@@@@@@@@@@@@@@@@')
+        const db = getDatabase();
+        set(ref(db, 'users/' + userId), {
+            username: document.getElementById('c').value,
+            email: document.getElementById('a').value,
+            profile_picture : document.getElementById('b').value
+        });
+
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, `users/${userId}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            console.log(snapshot.val());
+        } else {
+            console.log("No data available");
+        }
+        }).catch((error) => {
+        console.error(error);
+        });
+        }
+
+
+     
+
+
+      </script>
+
+
+<script>
+    console.log(document.getElementById('a'));
+//     function add() {
+        
+//         var a = document.getElementById('a').value;
+//         var b = document.getElementById('b').value;
+//         var c = document.getElementById('c').value;
+//         console.log(a,b,c);
+//         writeUserData(a,b,c, '666');
+      
+    
+// }
+</script>
+</body>
+</html>

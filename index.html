@@ -1,60 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>MyTodoList</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-    <link href="./css/todolist.css" rel="stylesheet">
+    <title>My Firebase Tutorial</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">TODO!</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="true" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarToggler">
-                <form class="form-inline ml-auto my-2 my-lg-0">
-                    <button class="btn btn-outline-warning my-2 my-sm-0" id="add" type="button">新增</button>
-                    <input class="form-control ml-sm-2" id="inputContent" type="search" placeholder="馬上加個待辦事項">
-                </form>
-              <ul class="navbar-nav mt-2 mt-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link" id="clear" href="#">全部清除</a>
-                </li>
-              </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="loading">
-        <div class="loader"></div>
-    </div>
-    <div class="container-fluid" style="display:none;">
-        <div class="row m-2">
-            <div class="col-12 offset-lg-3 col-lg-6" id="todolist">
-                <!-- [Todo Example]
-                <div class="card m-2">
-                    <div class="card-block p-2" data-key="---key here---">
-                        <div class="d-flex mb-2 justify-content-between">
-                            <span class="h4 mb-0 card-title">新增你的第一筆標籤吧！ <small class="h6 text-muted">時戳</small></span>
-                            <i class="delete-icon mt-1 mr-1 justify-content-end fas fa-times"></i>
-                        </div>
-                        <p class="card-text">邁向成功吧！</p>
-                    </div>
-                </div>
-                -->
-            </div>
-        </div>
-    </div>
-    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="./js/todolist.js"></script>
-<script>
-        $(document).ready(function () {
-            App.init();
-        });
+    <input type="text" placeholder="name" id="nameField">
+    <input type="text" placeholder="age" id="ageField">
+    <button onclick="writeData()"> Submit </button>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-database.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyANueGIlPh0aSVOS7cKseMKC39xhAsl3JM",
+          authDomain: "homepage-c3b5e.firebaseapp.com",
+          databaseURL: "https://homepage-c3b5e-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "homepage-c3b5e",
+          storageBucket: "homepage-c3b5e.appspot.com",
+          messagingSenderId: "313476801849",
+          appId: "1:313476801849:web:dec2a5f71d273e05d634e8",
+          measurementId: "G-B3XMV4KECF"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+
+      //add function 
+      function writeData() {
+      //   var table =  firebase.database().count;
+      //   table.once('value', function(snapshot) {
+      //   var count = 0;
+      //   firebase.database().forEach(function(childSnapshot) {
+      //     count++;
+      //   });
+      //   console.log(count);
+      // });
+      console.log(firebase.database().ref("User"));
+      userID = new Date().getTime().toString();
+      firebase.database().ref("User" + userID).set({
+          name: document.getElementById("nameField").value,
+          Age: document.getElementById ("ageField").value
+      });
+      }
     </script>
+
+    
 </body>
 </html>
+
+
+
+
+<!--
+    1. Enter Firebase Config at the bottom of the body
+    2. Create some HTML body elements to input data (2 inputs: name & age; 1 Submit button)
+    3. Add JS function to button via onclick
+-->
