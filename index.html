@@ -8,9 +8,15 @@
     <input type="text" placeholder="age" id="ageField">
     <button onclick="writeData()"> Submit </button>
 
+    <div id="list" class="list">
+
+    </div>
+
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+    <link rel="stylesheet" >
+    <link rel="stylesheet" type="text/css" href="less/todolist.css">
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
          https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -18,39 +24,88 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-database.js"></script>
 
     <script>
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      var firebaseConfig = {
-        apiKey: "AIzaSyANueGIlPh0aSVOS7cKseMKC39xhAsl3JM",
-          authDomain: "homepage-c3b5e.firebaseapp.com",
-          databaseURL: "https://homepage-c3b5e-default-rtdb.europe-west1.firebasedatabase.app",
-          projectId: "homepage-c3b5e",
-          storageBucket: "homepage-c3b5e.appspot.com",
-          messagingSenderId: "313476801849",
-          appId: "1:313476801849:web:dec2a5f71d273e05d634e8",
-          measurementId: "G-B3XMV4KECF"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyANueGIlPh0aSVOS7cKseMKC39xhAsl3JM",
+            authDomain: "homepage-c3b5e.firebaseapp.com",
+            databaseURL: "https://homepage-c3b5e-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "homepage-c3b5e",
+            storageBucket: "homepage-c3b5e.appspot.com",
+            messagingSenderId: "313476801849",
+            appId: "1:313476801849:web:dec2a5f71d273e05d634e8",
+            measurementId: "G-B3XMV4KECF"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        
+        addMarkup();
 
-      //add function 
-      function writeData() {
-      //   var table =  firebase.database().count;
-      //   table.once('value', function(snapshot) {
-      //   var count = 0;
-      //   firebase.database().forEach(function(childSnapshot) {
-      //     count++;
-      //   });
-      //   console.log(count);
-      // });
-      console.log(firebase.database().ref("User"));
-      userID = new Date().getTime().toString();
-      firebase.database().ref("User" + userID).set({
-          name: document.getElementById("nameField").value,
-          Age: document.getElementById ("ageField").value
-      });
-      }
+        //add function 
+        function writeData() {
+            const currentDiv = document.getElementById("list");
+            currentDiv.innerHTML = '';
+            // addMarkup();
+            console.log(firebase.database().ref("User"));
+            userID = new Date().getTime().toString();
+            firebase.database().ref("User/Users" + userID).set({
+                id: userID,
+                name: document.getElementById("nameField").value,
+                age: document.getElementById("ageField").value
+            });
+
+
+
+
+        }
+
+        function addMarkup() {
+            
+
+            firebase.database().ref("User").on('value', function(snap) {
+
+
+                snap.forEach(function(childNodes) {
+
+                    //This loop iterates over children of user_id
+                    //childNodes.key is key of the children of userid such as (20170710)
+                    console.log(childNodes.val().id);
+                    console.log(childNodes.val().name);
+                    console.log(childNodes.val().age);
+                    console.log('-----------');
+                    //childNodes.val().time;
+                    //childNodes.val().rest_time;
+                    //childNodes.val().interval_time;
+
+                    // create a new div element
+                    const newDiv = document.createElement("div");
+                    newDiv.setAttribute('id', childNodes.val().id);
+                    newDiv.classList.add("task");
+                    // and give it some content
+                    const contentDiv1 = document.createElement("span");
+                    contentDiv1.appendChild(document.createTextNode(childNodes.val().name));
+
+                    const contentDiv2 = document.createElement("span");
+                    contentDiv1.appendChild(document.createTextNode(childNodes.val().id));
+
+                    const contentDiv3 = document.createElement("span");
+                    contentDiv1.appendChild(document.createTextNode(childNodes.val().age));
+
+                    // const newContent2 = document.createTextNode(childNodes.val().name);
+                    // const newContent3 = document.createTextNode(childNodes.val().age);
+                    // add the text node to the newly created div
+                    newDiv.appendChild(contentDiv1);
+                    newDiv.appendChild(contentDiv2);
+                    newDiv.appendChild(contentDiv3);
+                    // newDiv.appendChild(newContent2);
+                    // newDiv.appendChild(newContent3);
+                    // add the newly created element and its content into the DOM
+                    const currentDiv = document.getElementById("list");
+                    currentDiv.appendChild(newDiv);
+                });
+            });
+        }
     </script>
 
     
